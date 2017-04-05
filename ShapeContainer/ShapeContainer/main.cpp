@@ -50,19 +50,19 @@ void zadanie1() {
 }
 
 void zadanie2() {
-	ShapeContainer sc = ShapeContainer();
+	ShapeContainer sc;
 
 	
-	auto rc = Rectangle("prostokat", 5, 10);
-	/*Square sq = Square("kwadrat", 5);
-	Circle cl = Circle("kolo", 6);
-	Ellipse el = Ellipse("elipsa", 8, 9);
-	*/
-	//sc.addShape(rc);
-	/*sc.addShape(sq);
-	sc.addShape(cl);
-	sc.addShape(el);
-	*/
+	std::unique_ptr<Rectangle> rc = std::make_unique<Rectangle>("prostokat", 5, 10);
+	std::unique_ptr<Square> sq = std::make_unique<Square>("kwadrat", 5);
+	std::unique_ptr<Circle> cl = std::make_unique<Circle>("kolo", 6);
+	std::unique_ptr<Ellipse> el = std::make_unique<Ellipse>("elipsa", 8, 9);
+	
+	sc.addShape(std::move(rc));
+	sc.addShape(std::move(sq));
+	sc.addShape(std::move(cl));
+	sc.addShape(std::move(el));
+	
 	sc.printAreas();
 
 	sc.printName();
